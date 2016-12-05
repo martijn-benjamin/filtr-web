@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Filtr the web</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><b>Filtr</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#github">Github</a></li>
+                <li><a href="#discuss">Discuss</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="headerwrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Stop being clickbait prey<br>Use Filtr</h1>
+                <button type="submit" class="btn btn-warning btn-lg" onclick="location.href='index.html#what'">Learn
+                    more
+                </button>
+            </div>
+            <div class="col-lg-6">
+                <img class="img-responsive" src="assets/img/desktop.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<a name="what"></a>
+<div class="container">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>What is Filtr?</h1>
+            <h3>Filtr is an open source initiative aiming at providing better insights on the credibility of
+                online publishers. Public rating will be used to provide visuals on pages you visit reflecting the
+                public opinion of that source. With this we aim to avoid hoax and clickbait type of publications to lose
+                their intended effect.</h3>
+        </div>
+    </div>
+
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Supported Browsers</h1>
+            <h3>&nbsp;</h3>
+        </div>
+
+        <div class="col-lg-4">
+            <img src="assets/img/appicns_Chrome.png" width="180" alt="">
+            <h4>Chrome</h4>
+        </div>
+
+        <div class="col-lg-4">
+            <img src="assets/img/appicns_Firefox.png" width="180" alt="">
+            <h4>Firefox</h4>
+        </div>
+
+        <div class="col-lg-4">
+            <img src="assets/img/appicns_Safari.png" width="180" alt="">
+            <h4>Safari</h4>
+        </div>
+
+    </div>
+
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h3>Currently we are working on the Chrome extension. With the extension users can rate the
+                publications they visit and based on the collected data the extension will provide visual information in
+                the browser reflecting the public opinion of that publication. We plan to offer the same functionality
+                for Firefox and Safari.</h3>
+        </div>
+    </div>
+</div>
+
+<a name="github"></a>
+<div class="container">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Collaborate</h1>
+            <h3>We can use all the help we can get. So if you feel like getting your hands dirty, come over and dig in
+                on <a href="https://github.com/martijn-benjamin?tab=repositories" target="_blank">Github</a></h3>
+        </div>
+    </div>
+</div>
+
+
+<a name="discuss"></a>
+<div class="container">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Keep the debate alive</h1>
+            <h3>Being an open source project on a very debatable subject, we want to involve as many people
+                as we can and take the time to have an open discussion about it.</h3>
+        </div>
+    </div>
+
+    <div class="row centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div id="disqus_thread"></div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    <hr>
+
+</div>
+
+<div class="container">
+    <p class="centered">&copy; 2016 Filtr.news </p>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+     var disqus_config = function () {
+     this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+     this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+     };
+     */
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//filtr-team.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
+</body>
+</html>
