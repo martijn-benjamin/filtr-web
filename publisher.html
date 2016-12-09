@@ -117,6 +117,12 @@
                     ohSnap('Oh Snap! You have to sign in first to vote...', {
                         color: 'blue'
                     });
+                },
+                403: function (message) {
+
+                    ohSnap('Oh Snap! ' + message.responseJSON.message, {
+                        color: 'blue'
+                    });
                 }
             }
         });
@@ -136,6 +142,12 @@
                 401: function () {
 
                     ohSnap('Oh Snap! You have to sign in first to vote...', {
+                        color: 'blue'
+                    });
+                },
+                403: function (message) {
+
+                    ohSnap('Oh Snap! ' + message.responseJSON.message, {
                         color: 'blue'
                     });
                 }
