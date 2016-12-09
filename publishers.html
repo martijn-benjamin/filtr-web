@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Filtr the web</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><b>Filtr</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="publishers.html">Publishers</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right social">
+                <a href="/auth/facebook">
+                    <li class="fa fa-facebook"></li>
+                </a>
+                <li class="fa fa-google-plus"></li>
+                <li class="fa fa-linkedin"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Publishers</h1>
+            <div id="list"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $.get('/_api/publisher', function (data, status) {
+
+        for (var i = 0; i < data.length; i++) {
+
+            var entry = document.createElement('div');
+            entry.innerHTML = '<a class="entry" href="/publisher.html?id=' + data[i].id + '">' + data[i].name + '</a>';
+
+            $('#list').append(entry);
+        }
+    });
+</script>
+
+</body>
+
+</html>

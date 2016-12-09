@@ -42,6 +42,64 @@ p {
     text-align: center;
 }
 
+.social {
+
+    padding-right: 10px;
+}
+
+.social .fa {
+
+    color: #fff;
+    font-size: 2em;
+    margin: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.social .fa:hover {
+
+    opacity: 0.6;
+
+}
+
+.entry {
+
+    font-size: 1.4em;
+}
+
+#name {
+
+    padding: 20px;
+
+}
+
+#score {
+
+    font-size: 3em;
+    background-color: #cecece;
+    padding: 20px;
+    border-radius: 120px;
+    width: 110px;
+
+}
+
+.voting {
+
+    padding-top: 20px;
+
+}
+
+.voting label {
+
+    padding-bottom: 15px;
+}
+
+.voting img {
+
+    margin: 10px;
+    cursor: pointer;
+}
+
 /* Links */
 a {
     color: #3498db;
@@ -77,6 +135,23 @@ hr {
     border-top: 1px solid #ccc;
     margin: 1em 0;
     padding: 0;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 0px;
+    right: 21px;
+    float: right;
+    clear: right;
+    background-color: white;
+}
+
+.alert-blue {
+    color: white;
+    background-color: #4A89DC;
 }
 
 .navbar-default {

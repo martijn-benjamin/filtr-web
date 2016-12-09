@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Filtr the web</title>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="assets/js/ohsnap.min.js"></script>
+
+    <script>
+
+        function get(name) {
+            if (name = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(location.search))
+                return decodeURIComponent(name[1]);
+        }
+
+        var publication = get('id');
+
+    </script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><b>Filtr</b></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="publishers.html">Publishers</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right social">
+                <a href="/auth/facebook">
+                    <li class="fa fa-facebook"></li>
+                </a>
+                <li class="fa fa-google-plus"></li>
+                <li class="fa fa-linkedin"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1 id="name"></h1>
+            <h3 id="type"></h3>
+            <label id="score"></label>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3 voting">
+            <label>Up or Down vote this publisher?</label>
+            <br>
+            <img src="assets/img/up.png" width="100" id="vote-up">
+            <img src="assets/img/down.png" width="100" id="vote-down">
+        </div>
+        <div class="row mt centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1>Join the discussion</h1>
+                <h3>Have your say about this Publisher</h3>
+            </div>
+        </div>
+
+        <div class="row centered">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div id="disqus_thread"></div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+        <hr>
+
+    </div>
+
+</div>
+
+<div id="ohsnap"></div>
+
+<script>
+    $.get('/_api/publisher/' + publication, function (data, status) {
+
+        $('#name').html(data.name);
+        $('#type').html('Score for this ' + data.type);
+        $('#score').html(data.score);
+    });
+
+    $('#vote-up').on('click', function () {
+
+        $.ajax({
+            url: '/_api/vote-up/' + publication,
+            type: 'PUT',
+            success: function (result) {
+
+                var score = result.changes[0].new_val.score;
+                $('#score').html(score);
+            },
+            statusCode: {
+                401: function () {
+
+                    ohSnap('Oh Snap! You have to sign in first to vote...', {
+                        color: 'blue'
+                    });
+                }
+            }
+        });
+    });
+
+    $('#vote-down').on('click', function () {
+
+        $.ajax({
+            url: '/_api/vote-down/' + publication,
+            type: 'PUT',
+            success: function (result) {
+
+                var score = result.changes[0].new_val.score;
+                $('#score').html(score);
+            },
+            statusCode: {
+                401: function () {
+
+                    ohSnap('Oh Snap! You have to sign in first to vote...', {
+                        color: 'blue'
+                    });
+                }
+            }
+        });
+    });
+
+</script>
+
+<script>
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+    var disqus_config = function () {
+        //this.page.url = publication;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = publication; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.title = 'Filtr (' + publication + ')';
+    };
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//filtr-team.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+</body>
+
+</html>
