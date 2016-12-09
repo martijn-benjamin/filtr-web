@@ -76,11 +76,16 @@ p {
 #score {
 
     font-size: 3em;
+    font-weight: bold;
     background-color: #cecece;
-    padding: 20px;
-    border-radius: 120px;
-    width: 110px;
 
+    border-radius: 140px;
+
+    width: 160px;
+    height: 160px;
+
+    padding-top: 45px;
+    margin: 0 auto;
 }
 
 .voting {
@@ -151,7 +156,7 @@ hr {
 
 .alert-blue {
     color: white;
-    background-color: #4A89DC;
+    background-color: #3498db;
 }
 
 .navbar-default {
