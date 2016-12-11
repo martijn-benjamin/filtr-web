@@ -69,7 +69,7 @@ p {
 
 #name {
 
-    padding: 20px;
+    padding: 15px;
 
 }
 
@@ -103,6 +103,14 @@ p {
 
     margin: 10px;
     cursor: pointer;
+    opacity: 0.3;
+
+}
+
+.voting img:hover {
+
+    opacity: 1;
+
 }
 
 /* Links */

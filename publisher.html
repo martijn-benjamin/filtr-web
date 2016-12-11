@@ -7,13 +7,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Filtr the web</title>
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
     <link href="assets/css/main.css" rel="stylesheet">
+
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="assets/js/ohsnap.min.js"></script>
 
     <script>
@@ -67,8 +74,31 @@
     <div class="row mt centered">
         <div class="col-lg-6 col-lg-offset-3">
             <h1 id="name"></h1>
+            <label>How would you tag this Publisher?</label>
+            <form class="form">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        <input name="tag" value="News" type="radio">News
+                    </label>
+                    <label class="btn btn-default">
+                        <input name="tag" value="Entertainment" type="radio">Entertainment
+                    </label>
+                    <label class="btn btn-default">
+                        <input name="tag" value="Satire" type="radio">Satire
+                    </label>
+                    <label class="btn btn-default">
+                        <input name="tag" value="Hoax" type="radio">Hoax
+                    </label>
+                    <label class="btn btn-default">
+                        <input name="tag" value="Clickbait" type="radio">Clickbait
+                    </label>
+                </div>
+            </form>
             <h3 id="type"></h3>
             <div id="score"></div>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3">
+
         </div>
         <div class="col-lg-6 col-lg-offset-3 voting">
             <label>Up or Down vote this publisher?</label>
@@ -105,6 +135,50 @@
         $('#score').html(data.score);
     });
 
+    $.get('/_api/vote/' + publication, function (data, status) {
+
+        if (data.length === 1) {
+
+            var vote = data[0].score;
+            var tag = data[0].tag;
+
+            $("input[name='tag'][value='" + tag + "']").parent('label').addClass('active');
+
+            if (vote === 1) {
+                $('#vote-up').css('opacity', '1');
+            }
+
+            if (vote === -1) {
+                $('#vote-down').css('opacity', '1');
+            }
+        }
+    });
+
+    $("input[name='tag']").change(function () {
+
+        $.ajax({
+            url: '/_api/tag/' + publication,
+            data: {
+                tag: this.value
+            },
+            type: 'PUT',
+            statusCode: {
+                401: function () {
+
+                    ohSnap('Oh Snap! You have to sign in first to tag...', {
+                        color: 'blue'
+                    });
+                },
+                403: function (message) {
+
+                    ohSnap('Oh Snap! ' + message.responseJSON.message, {
+                        color: 'blue'
+                    });
+                }
+            }
+        });
+    });
+
     $('#vote-up').on('click', function () {
 
         $.ajax({
@@ -114,6 +188,8 @@
 
                 var score = result.changes[0].new_val.score;
                 $('#score').html(score);
+                $('#vote-up').css('opacity', '1');
+                $('#vote-down').css('opacity', '0.3');
             },
             statusCode: {
                 401: function () {
@@ -141,6 +217,8 @@
 
                 var score = result.changes[0].new_val.score;
                 $('#score').html(score);
+                $('#vote-down').css('opacity', '1');
+                $('#vote-up').css('opacity', '0.3');
             },
             statusCode: {
                 401: function () {
